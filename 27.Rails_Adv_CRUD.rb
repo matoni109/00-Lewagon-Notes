@@ -194,11 +194,11 @@ class ReviewsController < ApplicationController
   Rails.application.routes.draw do
     resources :restaurants do
 
-      collection do
-        get :top
+      collection do #   # collection => no restaurant id in URL
+        get :top # RestaurantsController#top
       end
-      member do
-        get :chef
+      member do # member => restaurant id in URL
+        get :chef # RestaurantsController#chef
       end
       # needs resturant IDS
       resources :reviews, only: [ :new, :create ]
@@ -215,3 +215,18 @@ class ReviewsController < ApplicationController
     method: :delete,
     data: { confirm: "Are you sure?" } %>
   </li>
+
+  # app/models/restaurant.rb
+  class Restaurant < ApplicationRecord
+    validates :rating, inclusion: { in: [1,2,3], allow_nil: false }
+    validates :rating, inclusion: { in: [0,1,2,3], allow_nil: false }
+    validates :name, uniqueness: true, presence: true
+    validates :address, presence: true
+  end
+
+
+  tchai = Restaurant.new(name: "L'esprit Tchaï", stars: 1)
+  tchai.valid?
+  # => false
+  tchai.errors.full_messages
+  # => ["Address can't be blank"]
