@@ -172,7 +172,26 @@ elephant.save
 
 # rake db:creat db:migrate db:seed
 #
-#
+
+#Person.pluck(:name)
+# SELECT people.name FROM people
+# => ['David', 'Jeremy', 'Jose']
+
+Person.pluck(:id, :name)
+# SELECT people.id, people.name FROM people
+# => [[1, 'David'], [2, 'Jeremy'], [3, 'Jose']]
+
+Person.distinct.pluck(:role)
+# SELECT DISTINCT role FROM people
+# => ['admin', 'member', 'guest']
+
+Person.where(age: 21).limit(5).pluck(:id)
+# SELECT people.id FROM people WHERE people.age = 21 LIMIT 5
+# => [2, 3]
+
+Person.pluck('DATEDIFF(updated_at, created_at)')
+# SELECT DATEDIFF(updated_at, created_at) FROM people
+# => ['0', '27761', '173']
 
 gem install faker
 

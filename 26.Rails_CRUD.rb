@@ -1,6 +1,8 @@
 ## Rails CRUD
-##
+## <!-- MapBOX
+# map_token = pk.eyJ1IjoibWF0b25pMTA5IiwiYSI6ImNraTZzN3hpeTAxdjQyeXBndDFld2cwODgifQ.QDVAsTj3D_3wb7A3XGRP6g -->
 #
+# spring stop
 rails new thespoon-with-activerecord --skip-active-storage --skip-action-mailbox
 
 ## now for models
@@ -33,6 +35,8 @@ end
 
 # app/models/restaurant.rb
 class Restaurant < ApplicationRecord
+  has_many :reviews, dependent: :destroy #
+
   validates :name, presence: true
   validates :address, presence: true
   validates :rating, inclusion: { in: 1..5 }

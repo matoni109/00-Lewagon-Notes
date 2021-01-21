@@ -1,8 +1,6 @@
 ##
 #
 #
-
-
 rails new restaurant-reviews
 cd restaurant-reviews
 
@@ -49,10 +47,18 @@ puts "Finished!"
 # config/routes.rb
 Rails.application.routes.draw do
   resources :restaurants do
-    collection do
-      get :top
+
+    collection do #   # collection => no restaurant id in URL
+      get :top # RestaurantsController#top
     end
+    member do # member => restaurant id in URL
+      get :chef # RestaurantsController#chef
+    end
+    # needs resturant IDS
+    resources :reviews, only: [ :new, :create ]
   end
+  # outside of Restaurants
+  resources :reviews, only: [ :destroy, :show, :update ]
 end
 
 
@@ -83,7 +89,12 @@ Controller
 
 # app/controllers/restaurants_controller.rb
 class RestaurantsController < ApplicationController
+
   before_action :find_restaurant, only: [ :chef ]
+
+  def top
+    @restaurants = Restaurant.where(stars: 5)
+  end
 
   def chef
     @chef_name = @restaurant.chef_name
@@ -153,6 +164,8 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     # we need `restaurant_id` to associate review with corresponding restaurant
+    #@review.valid?
+    #@review.errors.messages
     @restaurant = Restaurant.find(params[:restaurant_id])
     @review.restaurant = @restaurant
     @review.save
@@ -169,64 +182,64 @@ class ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:content)
   end
+end
+touch app/views/reviews/new.html.erb
 
-  touch app/views/reviews/new.html.erb
-
-  !-- app/views/reviews/new.html.erb -->
-  <%= simple_form_for [ @restaurant, @review ] do |f| %>
-    <%= f.input :content %>
-    <%= f.submit "Submit review", class: "btn btn-primary" %>
-  <% end %>
-
-
-  ## show page with reviews
-  <!-- app/views/restaurants/show.html.erb -->
-
-  <!-- ... -->
-  <ul class="list-group">
-  <% @restaurant.reviews.each do |review| %>
-    <li class="list-group-item"><%= review.content %></li>
-  <% end %>
-  </ul>
-  <!-- ... -->
+!-- app/views/reviews/new.html.erb -->
+<%= simple_form_for [ @restaurant, @review ] do |f| %>
+  <%= f.input :content %>
+  <%= f.submit "Submit review", class: "btn btn-primary" %>
+<% end %>
 
 
-  Rails.application.routes.draw do
-    resources :restaurants do
+## show page with reviews
+<!-- app/views/restaurants/show.html.erb -->
 
-      collection do #   # collection => no restaurant id in URL
-        get :top # RestaurantsController#top
-      end
-      member do # member => restaurant id in URL
-        get :chef # RestaurantsController#chef
-      end
-      # needs resturant IDS
-      resources :reviews, only: [ :new, :create ]
+<!-- ... -->
+<ul class="list-group">
+<% @restaurant.reviews.each do |review| %>
+  <li class="list-group-item"><%= review.content %></li>
+<% end %>
+</ul>
+<!-- ... -->
+
+
+Rails.application.routes.draw do
+  resources :restaurants do
+
+    collection do #   # collection => no restaurant id in URL
+      get :top # RestaurantsController#top
     end
-    # outside of Restaurants
-    resources :reviews, only: [ :destroy, :show, :update ]
+    member do # member => restaurant id in URL
+      get :chef # RestaurantsController#chef
+    end
+    # needs resturant IDS
+    resources :reviews, only: [ :new, :create ]
   end
+  # outside of Restaurants
+  resources :reviews, only: [ :destroy, :show, :update ]
+end
 
 
-  <li class="list-group-item">
-  <%= review.content %>
-  <%= link_to "Remove",
-    review_path(review),
-    method: :delete,
-    data: { confirm: "Are you sure?" } %>
-  </li>
+<li class="list-group-item">
+<%= review.content %>
+<%= link_to "Remove",
+  review_path(review),
+  method: :delete,
+  data: { confirm: "Are you sure?" } %>
+</li>
 
-  # app/models/restaurant.rb
-  class Restaurant < ApplicationRecord
-    validates :rating, inclusion: { in: [1,2,3], allow_nil: false }
-    validates :rating, inclusion: { in: [0,1,2,3], allow_nil: false }
-    validates :name, uniqueness: true, presence: true
-    validates :address, presence: true
-  end
+# app/models/restaurant.rb
+class Restaurant < ApplicationRecord
+  validates :rating, inclusion: { in: [1,2,3], allow_nil: false }
+  validates :rating, inclusion: { in: [0,1,2,3], allow_nil: false }
+  validates :name, uniqueness: true, presence: true
+  validates :address, presence: true
+end
 
 
-  tchai = Restaurant.new(name: "L'esprit Tchaï", stars: 1)
-  tchai.valid?
-  # => false
-  tchai.errors.full_messages
-  # => ["Address can't be blank"]
+tchai = Restaurant.new(name: "L'esprit Tchaï", stars: 1)
+tchai.valid?
+# => false
+tchai.errors.full_messages
+# => ["Address can't be blank"]
