@@ -3,7 +3,7 @@
 # https://regex101.com
 # https://rubular.com/
 # https://regexr.com
-#
+# http://ruby.bastardsbook.com/chapters/regexes/
 # https://github.com/K-and-R/email_validator
 #
 # https://debuggex.com
