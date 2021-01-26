@@ -118,28 +118,28 @@ lt tab => link tag
 ## make JS components
 // app/javascript/components/navbar.js
 
+Which event listener do you need to setup in application.js to call libraries’ initialisation code?
+  const initUpdateNavbarOnScroll = () => {
+    #   const navbar = document.querySelector('.navbar-lewagon');
+    #   if (navbar) {
+    #       window.addEventListener('scroll', () => {
+    #         if (window.scrollY >= window.innerHeight) {
+    #           navbar.classList.add('navbar-lewagon-white');
+    #         } else {
+    #           navbar.classList.remove('navbar-lewagon-white');
+    #         }
+    #         });
+    #         }
+    #         }
 
-const initUpdateNavbarOnScroll = () => {
-  #   const navbar = document.querySelector('.navbar-lewagon');
-  #   if (navbar) {
-  #       window.addEventListener('scroll', () => {
-  #         if (window.scrollY >= window.innerHeight) {
-  #           navbar.classList.add('navbar-lewagon-white');
-  #         } else {
-  #           navbar.classList.remove('navbar-lewagon-white');
-  #         }
-  #         });
-  #         }
-  #         }
-
-  #         export { initUpdateNavbarOnScroll };
+    #         export { initUpdateNavbarOnScroll };
 
 
-  #         ## import js
-  #         // app/javascript/packs/application.js
-  #         import { initUpdateNavbarOnScroll } from '../components/navbar';
+    #         ## import js
+    #         // app/javascript/packs/application.js
+    #         import { initUpdateNavbarOnScroll } from '../components/navbar';
 
-  #         document.addEventListener('turbolinks:load', () => {
-  #                                     // Call your JS functions here
-  #                                     initUpdateNavbarOnScroll();
-  #         });
+    #         document.addEventListener('turbolinks:load', () => {
+    #                                     // Call your JS functions here
+    #                                     initUpdateNavbarOnScroll();
+    #         });

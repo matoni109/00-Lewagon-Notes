@@ -34,3 +34,60 @@ end
 
 
 puts " finished seeds !!"
+
+
+## Example # 2 with JSON fetc
+#
+#
+require 'open-uri'
+require 'json'
+
+drinks = [ "Mojito",
+           "Long Island Iced Tea",
+           "Daiquiri",
+           "Margarita",
+           "Bloody Mary",
+           "Cosmopolitan",
+           "Moscow Mule",
+           "Screwdriver"]
+
+
+puts "cleaning house :)"
+Cocktail.destroy_all
+# Dose.destroy_all
+Ingredient.destroy_all
+puts "done cleaning "#
+
+# Name Me
+drinks.each do |drink|
+  url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=#{drink.downcase}"
+  word_back = open(url).read
+  word = JSON.parse(word_back)
+  word["drinks"].first
+  Cocktail.create!(
+    name: drink,
+    image_scr: word["drinks"].first["strDrinkThumb"]
+
+  )
+  puts "made #{Cocktail.last.name}"
+end
+
+# Json Time
+puts "JSON TIME "#
+
+url = "https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list"
+word_back = open(url).read
+word = JSON.parse(word_back)
+word["drinks"]
+# p word["drinks"][0]["strIngredient1"]
+# binding.pry
+
+word["drinks"].each do |element|
+  Ingredient.create!(
+    name: element["strIngredient1"]
+  )
+  puts "made #{Ingredient.last.name}"
+end
+
+
+puts " finished seeds !!"

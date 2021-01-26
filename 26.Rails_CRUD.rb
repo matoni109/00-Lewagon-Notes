@@ -3,11 +3,35 @@
 # map_token = pk.eyJ1IjoibWF0b25pMTA5IiwiYSI6ImNraTZzN3hpeTAxdjQyeXBndDFld2cwODgifQ.QDVAsTj3D_3wb7A3XGRP6g -->
 #
 # spring stop
-rails new thespoon-with-activerecord --skip-active-storage --skip-action-mailbox
+rails new thespoon-with-activerecord --database=postgresql
+##
+yarn add bootstrap jquery popper.js
+##
+gem 'autoprefixer-rails'
+gem 'font-awesome-sass', '~> 5.12.0'
+gem 'simple_form'
+gem 'faker'
+gem "pry-byebug"
+gem 'cloudinary', '~> 1.16.0'
+gem 'dotenv-rails', groups: [:development, :test]
+
+#touch .env
+echo '.env*' >> .gitignore
+#
+bundle install
+rails generate simple_form:install --bootstrap
+rm app/assets/stylesheets/application.css
+touch app/assets/stylesheets/application.scss
+
+@import "bootstrap/scss/bootstrap";
 
 ## now for models
 rails generate model Restaurant name:string rating:integer
 ## then
+## run after models setup
+rails active_storage:install
+rails db:migrate
+##
 check migration !
 ##
 rails db:migrate
@@ -82,15 +106,15 @@ Rails.application.routes.draw do
   # read all
   get '/restaurants', to: 'restaurants#index', as: :pets
   # read one
-  get '/restaurant/:id', to: 'restaurants#show', as: :pet
+  get '/restaurants/:id', to: 'restaurants#show', as: :pet
 
   # create a restaurant
   get '/restaurants/new', to: 'restaurants#new', as: :new_pet
-  post '/restaurant/new', to: 'restaurants#create' #NIL
+  post '/restaurants', to: 'restaurants#create' #NIL
 
   # update a restaurant
   get '/restaurants/:id/edit', to: 'restaurants#edit', as: :edit_pet
-  patch '/restaurant/:id', to: 'restaurants#update'
+  patch '/restaurants/:id', to: 'restaurants#update'
   # delete a resturant
   delete '/restaurants/:id', to: 'restaurants#destroy'
 
