@@ -1,6 +1,8 @@
 # 29.Rails_Hosting_IMG.rb
-#
-#
+# https://www.justinweiss.com/articles/search-and-filter-rails-models-without-bloating-your-controller/
+# https://github.com/rails/rails/issues/33463#issuecomment-511151950
+# EDITOR='subl --wait' rails credentials:edit
+# https://stackoverflow.com/questions/60780151/how-to-use-rails-5-2-credentials-in-another-yml-file
 Heroku
 https://id.heroku.com/signup
 heroku
