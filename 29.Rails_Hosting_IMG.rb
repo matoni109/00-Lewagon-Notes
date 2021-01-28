@@ -3,6 +3,7 @@
 # https://github.com/rails/rails/issues/33463#issuecomment-511151950
 # EDITOR='subl --wait' rails credentials:edit
 # https://stackoverflow.com/questions/60780151/how-to-use-rails-5-2-credentials-in-another-yml-file
+# Rails.application.credentials.cloudinary.fetch(:api_key)
 Heroku
 https://id.heroku.com/signup
 heroku
