@@ -97,6 +97,9 @@ Doctor.count
 
 Restaurant.where("rating >= 4").order(rating: :asc).first(5)
 
+Restaurant.where('title LIKE :query AND category = :category', query: params[query], category: "Rock")
+
+Restaurant.find_by(title: params[:query])
 
 Restaurant.find_by_name("the weak goose")
 # table sport_cars
