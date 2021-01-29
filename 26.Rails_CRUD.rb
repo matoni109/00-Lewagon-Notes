@@ -1,7 +1,7 @@
 ## Rails CRUD
 ## <!-- MapBOX
 # map_token = pk.eyJ1IjoibWF0b25pMTA5IiwiYSI6ImNraTZzN3hpeTAxdjQyeXBndDFld2cwODgifQ.QDVAsTj3D_3wb7A3XGRP6g -->
-#
+# https://github.com/lewagon/rails-templates/tree/master#minimal
 # spring stop
 rails new thespoon-with-activerecord --database=postgresql
 ##
