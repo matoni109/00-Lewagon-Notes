@@ -105,7 +105,7 @@ curl https://raw.githubusercontent.com/lewagon/karr-images/master/white_logo_red
 </div>
 <% end %>
 
-
+f
 ### Controllers
 # app/controllers/application_controller.rb
 class ApplicationController < ActionController::Base

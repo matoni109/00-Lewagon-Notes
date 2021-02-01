@@ -11,7 +11,9 @@ gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.12.0'
 gem 'simple_form'
 gem 'faker'
+gem 'pretender'
 gem "pry-byebug"
+gem 'pundit'
 gem 'cloudinary', '~> 1.16.0'
 gem 'dotenv-rails', groups: [:development, :test]
 
@@ -59,6 +61,7 @@ end
 
 # app/models/restaurant.rb
 class Restaurant < ApplicationRecord
+  before_action :authenticate_user!, except [index]
   has_many :reviews, dependent: :destroy #
 
   validates :name, presence: true
