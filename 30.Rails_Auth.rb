@@ -52,6 +52,10 @@ rails generate devise User
 
 rails db:migrate
 
+## logout
+<%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+
+
 # app/models/user.rb
 
 class User < ApplicationRecord
