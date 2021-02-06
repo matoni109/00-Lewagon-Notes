@@ -80,16 +80,23 @@ class RestaurantController
   end
 end
 
+# update the views
 
 # <% if policy(Restaurant).create? %>
-#   <%= link_to "New restaurant", new_restaurant_path %>
+# #  <%= link_to "New restaurant", new_restaurant_path %>
 # <% end %>
 
 # app/policies/restaurant_policy.rb
 class RestaurantPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.all
+      if user && user.role == "admin"
+        scope.all
+      elsif user
+        scope.where(user: user )
+      else
+        false
+      end
       # For a multi-tenant SaaS app, you may want to use:
       # scope.where(user: user)
     end
@@ -97,7 +104,6 @@ class RestaurantPolicy < ApplicationPolicy
     def index?
       return true
     end
-
 
     def new?
       return true
@@ -153,4 +159,3 @@ pry> user.save
 
 You can now use this admin field in your policies!
 Happy Authorizing!
-2
