@@ -132,3 +132,8 @@ class PagesController < ApplicationController
   def home
   end
 end
+
+
+@bike.images.each do |image|
+  image
+end

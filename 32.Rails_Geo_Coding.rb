@@ -20,7 +20,7 @@ Geocoder.configure(
 
 # add to bikes and users
 rails g migration AddCoordinatesTo*Flats* latitude:float longitude:float
-
+rails g migration AddCoordinatesToBikes latitude:float longitude:float
 ## app/models/bikes.rb
 class Bike < ApplicationRecord
   geocoded_by :address

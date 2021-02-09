@@ -1,4 +1,5 @@
 ## Rails CRUD
+# https://strftimer.com/
 ## <!-- MapBOX
 # map_token = pk.eyJ1IjoibWF0b25pMTA5IiwiYSI6ImNraTZzN3hpeTAxdjQyeXBndDFld2cwODgifQ.QDVAsTj3D_3wb7A3XGRP6g -->
 # https://github.com/lewagon/rails-templates/tree/master#minimal
@@ -16,6 +17,11 @@ gem "pry-byebug"
 gem 'pundit'
 gem 'cloudinary', '~> 1.16.0'
 gem 'dotenv-rails', groups: [:development, :test]
+
+gem 'pg_search', '~> 2.3.0' || gem 'searchkick', '~> 4.0'
+
+gem 'geocoder'
+
 
 #touch .env
 echo '.env*' >> .gitignore
@@ -301,3 +307,5 @@ class RestaurantsController < ApplicationController
     <%= hidden_field_tag :grid_letters, @letters %>
     <%= f.submit %>
   <% end %>
+
+  rails g migration RenameLocationColumnNameToAddress
