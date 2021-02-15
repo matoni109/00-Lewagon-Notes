@@ -84,6 +84,7 @@ class MoviesController < ApplicationController
   def index
     if params[:query].present?
       @movies = Movie.where(title: params[:query])
+      @movies = Movie.all if @movies.empty?
     else
       @movies = Movie.all
     end
@@ -207,9 +208,22 @@ results = PgSearch.multisearch('superman')
 
 results.each do |result|
   puts result.searchable
+  ## searchable is an array full of movies and tv shows
+  ## presents in a usable ruby object
 end
 
-
+## in controller post PG install
+class MoviesController < ApplicationController
+  def index
+    if params[:query].present?
+      @movies = Movie.global_search(params[:query])
+      ##
+      @movies = Movie.all if @movies.empty?
+    else
+      @movies = Movie.all
+    end
+  end
+end
 
 #1: Elasticsearch
 # https://www.linuxuprising.com/2019/06/new-oracle-java-11-installer-for-ubuntu.html

@@ -21,7 +21,7 @@ stt
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-##
+## https://www.rubyguides.com/2019/11/rails-flash-messages/
 
 gem 'simple_form'
 

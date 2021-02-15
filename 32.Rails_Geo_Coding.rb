@@ -1,6 +1,6 @@
 #
 #
-##
+## https://community.algolia.com/places/examples.html
 #
 "Eiffel Tower" → { lat: 48.8582, lng: 2.2945 }
 

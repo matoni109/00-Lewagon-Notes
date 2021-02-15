@@ -5,22 +5,24 @@
 # https://github.com/lewagon/rails-templates/tree/master#minimal
 # spring stop
 rails new thespoon-with-activerecord --database=postgresql
-##
+## https://www.rubyguides.com/2019/11/rails-flash-messages/
+# https://api.rubyonrails.org/classes/ActionController/Flash/ClassMethods.html
 yarn add bootstrap jquery popper.js
 ##
 gem 'autoprefixer-rails'
-gem 'font-awesome-sass', '~> 5.12.0'
-gem 'simple_form'
-gem 'faker'
-gem 'pretender'
-gem "pry-byebug"
-gem 'pundit'
+gem 'bootsnap', '>= 1.4.2', require: false
 gem 'cloudinary', '~> 1.16.0'
+gem 'devise'
 gem 'dotenv-rails', groups: [:development, :test]
-
-gem 'pg_search', '~> 2.3.0' || gem 'searchkick', '~> 4.0'
-
+gem 'faker'
+gem 'font-awesome-sass', '~> 5.12.0'
 gem 'geocoder'
+gem 'pg_search', '~> 2.3.0' || gem 'searchkick', '~> 4.0'
+gem 'pry-byebug'
+gem 'pretender'
+gem 'pundit'
+gem 'simple_form'
+gem 'turbolinks_render'
 
 
 #touch .env

@@ -1,6 +1,6 @@
 Selecting 1 element:
 
-element.classList.add("red");
+    element.classList.add("red");
 element.classList.remove("red");
 element.classList.toggle("red");
 
@@ -100,43 +100,43 @@ fetch("http://www.omdbapi.com/?s=harry potter&apikey=adf1f2d7")
 const list = document.querySelector('#results');
 
 const insertMovies = (data) => {
-  data.Search.forEach((result) => {
-    const movie = `<li>
+    data.Search.forEach((result) => {
+        const movie = `<li>
       <img src="${result.Poster}" alt="" />
       <p>${result.Title}</p>
     </li>`;
-    list.insertAdjacentHTML('beforeend', movie);
-  });
+        list.insertAdjacentHTML('beforeend', movie);
+    });
 };
 
 const fetchMovies = (query) => {
-  fetch(`http://www.omdbapi.com/?s=${query}&apikey=adf1f2d7`)
-    .then(response => response.json())
-    .then(insertMovies);
+    fetch(`http://www.omdbapi.com/?s=${query}&apikey=adf1f2d7`)
+        .then(response => response.json())
+        .then(insertMovies);
 };
 
 fetchMovies('harry potter'); // on 1st page load
 
 const form = document.querySelector('#search-form');
 form.addEventListener('submit', (event) => {
-  event.preventDefault();
-  list.innerHTML = '';
-  const input = document.querySelector('#search-input');
-  fetchMovies(input.value);
+    event.preventDefault();
+    list.innerHTML = '';
+    const input = document.querySelector('#search-input');
+    fetchMovies(input.value);
 });
 
 
 // POST
 
 const searchAlgoliaPlaces = (event) => {
-  fetch("https://places-dsn.algolia.net/1/places/query", {
-    method: "POST",
-    body: JSON.stringify({ query: event.currentTarget.value })
-  })
-    .then(response => response.json())
-    .then((data) => {
-      console.log(data.hits); // Look at local_names.default
-    });
+    fetch("https://places-dsn.algolia.net/1/places/query", {
+            method: "POST",
+            body: JSON.stringify({ query: event.currentTarget.value })
+        })
+        .then(response => response.json())
+        .then((data) => {
+            console.log(data.hits); // Look at local_names.default
+        });
 };
 
 const input = document.querySelector("#search");
@@ -145,22 +145,22 @@ input.addEventListener("keyup", searchAlgoliaPlaces);
 
 
 document.querySelectorAll("img").forEach((img) => {
-  img.addEventListener("click", (event) => {
-    event.currentTarget.classList.toggle("img-circle");
-  });
+    img.addEventListener("click", (event) => {
+        event.currentTarget.classList.toggle("img-circle");
+    });
 });
 
 
 const bindConfirm = (element) => {
-  element.addEventListener("click", (event) => {
-    if (!confirm("Are you sure you want to delete?")) {
-      event.preventDefault();
-    }
-  });
+    element.addEventListener("click", (event) => {
+        if (!confirm("Are you sure you want to delete?")) {
+            event.preventDefault();
+        }
+    });
 };
 
 document.querySelectorAll(".confirmable").forEach(bindConfirm);
 
 What you guessed:
 
-?
+    ?
