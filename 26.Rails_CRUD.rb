@@ -10,6 +10,7 @@ rails new thespoon-with-activerecord --database=postgresql
 yarn add bootstrap jquery popper.js
 ##
 gem 'autoprefixer-rails'
+gem 'blazer'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'cloudinary', '~> 1.16.0'
 gem 'devise'
@@ -21,6 +22,7 @@ gem 'pg_search', '~> 2.3.0' || gem 'searchkick', '~> 4.0'
 gem 'pry-byebug'
 gem 'pretender'
 gem 'pundit'
+gem 'rails_admin', '~> 2.0'
 gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
 gem 'simple_form'
