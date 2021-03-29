@@ -1,6 +1,6 @@
 ## Rails Seach
 #
-#
+# https://pablo-curell-mompo.medium.com/understanding-and-tweaking-pg-search-62c125b2ded1
 # Gemfile
 gem 'pg_search', '~> 2.3.0'
 # https://github.com/Casecommons/pg_search#tsearch-full-text-search

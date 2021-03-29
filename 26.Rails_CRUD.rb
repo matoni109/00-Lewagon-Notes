@@ -17,6 +17,7 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'faker'
 gem 'font-awesome-sass', '~> 5.12.0'
 gem 'geocoder'
+gem "montrose" # schedual https://github.com/rossta/montrose
 gem 'pg_search', '~> 2.3.0' || gem 'searchkick', '~> 4.0'
 gem 'pry-byebug'
 gem 'pretender'
@@ -27,6 +28,9 @@ gem 'simple_form'
 gem 'turbolinks_render'
 
 # git remote update --prune
+# git checkout oauth-setup && git rebase master
+# git push -f origin oauth-setup
+
 #touch .env
 echo '.env*' >> .gitignore
 #
