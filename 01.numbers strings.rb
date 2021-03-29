@@ -1,6 +1,8 @@
 # Addition
 1 + 1   #=> 2
 
+ user["email"]&.split(' ')
+
 # Subtraction
 2 - 1   #=> 1
 
